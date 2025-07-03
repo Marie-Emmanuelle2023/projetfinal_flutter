@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../models/recette.dart';
 import '../../fonctions/database_helper.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailScreen extends StatefulWidget {
   final Recette recette;
@@ -127,6 +128,19 @@ class _DetailScreenState extends State<DetailScreen> {
             Text(
               _recette.instructions,
               style: const TextStyle(color: Colors.white70, fontSize: 16),
+            ),
+            RatingBar.builder(
+              initialRating: 3,
+              minRating: 1,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) =>
+                  Icon(Icons.star, color: Colors.amber),
+              onRatingUpdate: (rating) {
+                print(rating);
+              },
             ),
           ],
         ),
